@@ -1,16 +1,16 @@
-on: [push, pull_request]
+name: "Trigger: Push action"
 
+on:
+  push:
+    branches:
+      - main
+      
+run-name: j
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-        matrix:
-          os: [ubuntu-latest, windows-latest, macOS-latest]
-
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
     steps:
-     - name: ShellCheck
-       uses: ludeeus/action-shellcheck@1.1.0
-         with:yabs.sh
-
-# Output format (checkstyle, diff, gcc, json, json1, quiet, tty)
-    
+      - uses: actions/checkout@v3
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@1.1.0
