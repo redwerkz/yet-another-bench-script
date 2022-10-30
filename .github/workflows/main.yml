@@ -1,0 +1,16 @@
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+     - name: ShellCheck
+       uses: ludeeus/action-shellcheck@1.1.0
+         with:yabs.sh
+
+# Output format (checkstyle, diff, gcc, json, json1, quiet, tty)
+    
